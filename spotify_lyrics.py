@@ -62,6 +62,7 @@ def print_lyrics(song, title, heading=""):
         lyrics = song.lyrics.replace("EmbedShare URLCopyEmbedCopy", "").rstrip(string.digits)
         print(f"\n{heading}\n{lyrics}\n")
 
+    # if no lyrics are available from the title track and artist, search again without artist name
     except AttributeError:
         print()
         song = genius.search_song(title=title)
@@ -111,10 +112,15 @@ def main():
 
                 if current_type == "track" and current_track_info['id'] != current_track_id:
                     print("============================================================")
+
+                    # remove any words from remove_words in the song title
                     big_regex = re.compile('|'.join(map(re.escape, remove_words)))
                     title = big_regex.sub("", current_track_info["track_name"]).strip()
+
+                    # look up lyrics using song title and artist name 
                     song = genius.search_song(title=title, artist=current_track_info["artist"])
                     heading = title_by_artist(current_track_info)
+
                     print_lyrics(song, title, heading)
                     current_track_id = current_track_info['id']
 
@@ -155,4 +161,3 @@ if __name__ == '__main__':
     except KeyboardInterrupt: # ctrl + c to end program
         print("\n>> spotify lyrics script terminated\n")
 
-# clean up code
