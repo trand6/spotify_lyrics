@@ -60,6 +60,8 @@ def print_lyrics(song, title, heading=""):
     """Returns lyrics of a song and displays on terminal."""
     try:
         lyrics = song.lyrics.replace("EmbedShare URLCopyEmbedCopy", "").rstrip(string.digits)
+        lyrics = lyrics.replace("Embed", "")
+        lyrics = lyrics.rstrip(string.digits)
         print(f"\n{heading}\n{lyrics}\n")
 
     # if no lyrics are available from the title track and artist, search again without artist name
@@ -161,3 +163,4 @@ if __name__ == '__main__':
     except KeyboardInterrupt: # ctrl + c to end program
         print("\n>> spotify lyrics script terminated\n")
 
+# fix rstrip 3Embed

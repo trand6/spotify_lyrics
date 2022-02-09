@@ -1,10 +1,10 @@
 # Spotify Lyrics :notes:
 
-Automatically display music lyrics on the terminal to the song you're listening to from Spotify.
+Automatically display currently playing Spotify lyrics to a Discord channel and terminal.
 
 ## About :musical_note:	
-This Python program will use the spotipy library to get the title track and artist of the currently playing song.Then lyricsgenius will use that information to search the title track and artist to display the lyrics in a resizable terminal window.
-![](spotify_lyrics_demo.gif)
+This Python program will use the spotipy library to get the title track and artist of the currently playing song. Then lyricsgenius will use that information to search the title track and artist to use a webhook and display the lyrics in a resizable terminal window.
+![](demo.gif)
 ## Installation :desktop_computer:
 
 ```bash
@@ -16,9 +16,23 @@ pip3 install spotipy
 ```bash
 pip3 install python-dotenv
 ```
+
+```bash
+pip3 install discord_webhook
+```
 ## Notes :bulb:
 - The lyrics need to be available in Genius's music lyric database to be displayed.
 - If the title track and artist yield no results, the program will try to search again without the artist to account for possible song covers and look for the original artist.
+- Discord: Server Settings > Integration > Webhooks > New Webhook > Copy Webhook URL > paste into .env
+
+Displaying the lyrics to both the Discord channel and terminal:
+```bash
+python3 run bot.py
+```
+Displaying lyrics to the terminal only:
+```bash
+python3 spotify_lyrics.py
+```
 
 ## Documentation :book:
 Check out these important documents to properly set up authorization:
